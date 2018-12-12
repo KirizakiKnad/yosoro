@@ -2,6 +2,7 @@
   <div class="hello">
     <button v-on:click="clickHandler('dadadadada')" type="button" name="button">按钮</button>
     <p v-show="flag" > 321 </p>
+    <a href="#">Hello</a>
   </div>
 </template>
 
