@@ -22,7 +22,7 @@
         </ul>
         </div>
         <div v-else>
-        <el-button>请登录</el-button>
+          <el-button>请登录</el-button>
         </div>
       </div></el-col>
     </el-row>
@@ -34,8 +34,8 @@
     export default {
         name: "MainWindow",
       data() {
-        var isLogin=true;
         return {
+            isLogin:true,
             userinfos:[
               {
                 name:"Username",
