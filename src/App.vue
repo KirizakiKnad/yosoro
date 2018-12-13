@@ -1,17 +1,15 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" alt="Logo">
-    <Login/>
-    <router-view/>
+    <MainWindow/>
   </div>
 </template>
 
-<script>
-import Login from "./components/login/Login"
+<script >
+import MainWindow from "./components/main/MainWindow";
 export default {
   name: 'App',
   components: {
-    Login
+    MainWindow
   }
 }
 </script>
