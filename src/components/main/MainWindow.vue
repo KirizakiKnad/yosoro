@@ -1,15 +1,33 @@
 <template>
   <div class="initbox">
     <div class="is-background"></div>
-    <el-row :gutter="20">
+    <el-row :gutter="20"><!-- 头部 -->
       <el-col :span="24"><div class="grid-content bg-purple">
 
       </div></el-col>
     </el-row>
-    <el-row :gutter="20">
-      <el-col :span="18"><div class="grid-content bg-purple content">
-
-      </div></el-col>
+    <div class="LeftContent">
+      <div class="content">
+        <!-- 显示帖子内容 -->
+        <ul>
+          <li></li>
+        </ul>
+      </div>
+      <!-- 翻页组件 -->
+      <div class="block">
+       <el-pagination class="page"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage4"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="50"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="50">
+        </el-pagination>
+      </div>
+    </div>
+    <!-- 用户信息栏 -->
+    <el-row>
       <el-col :span="6"><div class="grid-content bg-purple content" id="infos">
         <div v-if="isLogin">
         <div class="headimg"></div>
@@ -21,9 +39,10 @@
           <li v-for= "item in userinfos">积分剩余：{{ item.point }}</li>
         </ul>
         </div>
-        <div v-else>
-          <el-button>请登录</el-button>
+        <div v-else class="Tologin">
+          <el-button class="TologinBtn">请登录</el-button>
         </div>
+        <el-button @click="an">切换登录状态</el-button>
       </div></el-col>
     </el-row>
   </div>
@@ -45,12 +64,22 @@
                 point:"312"
               }
             ],
-
         }
       },
       methods: {
+        handleSizeChange(val) {
+          console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+          console.log(`当前页: ${val}`);
+        },
+        an(){
+          this.isLogin=!this.isLogin;
+          console.log(this.isLogin);
+        }
+      },
 
-      }
+
 
     }
 </script>
@@ -94,6 +123,21 @@
     height: 100%;
     background-image: url("../../assets/MT.jpg");
   }
+  .LeftContent{
+
+    background: cornflowerblue;
+    float: left;
+    height: 1000px;
+    width: 740px;
+  }
+  .content{
+    height: 800px;
+  }
+  .block{
+    position: relative;
+    bottom: 0;
+    z-index: 99;
+  }
   .headimg{
     height: 100px;
     width: 100px;
@@ -102,6 +146,14 @@
     position: relative;
     top:20px;
   }
+  .Tologin{
+    height: 200px;
+    width: 80px;
+   margin:auto ;
+  }
+  .TologinBtn{
+    margin-top: 100px;
+  }
   .userinfo{
     margin: 30px auto;
     padding: 0 auto;
@@ -109,6 +161,7 @@
   }
   #infos{
     height: 400px;
+
   }
   .userinfo>li{
     margin: 4px auto;
